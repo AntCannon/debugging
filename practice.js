@@ -32,15 +32,17 @@ const person = {
   
   
   function getEducationHistory(person) {
-    let [ education ] = person;
+    let { education } = person;
+    let degree = education.degree;
+    let major = education.major;
+    let university = education.university.name;
   
-    let degree = education[degree];
-    let major = education[major];
-    let university = education[university][name];
-  
-    return "My name is ${person.firstName}, and I graduated from ${university} with a $[degree] in ${major}".
+    return `My name is ${person.firstName}, and I graduated from ${university} with a ${degree} in ${major}.`
   }
+  // SyntaxError: Unexpected token '}' -- line 41 had a period outside. need backticks for string interpolation
   
+  console.log(getEducationHistory(person))
+
   function logAllFriendsNamesAndAges(person) {
     let [ friends ] = person;
   
@@ -53,7 +55,8 @@ const person = {
     let [ phone ] = person;
   
     for (const key of phone) {
-      phone.key = "(" areaCode + ") " + phone.key;
+      phone.key = "(" + areaCode + ") " + phone.key;
+      // SyntaxError: Unexpected identifier 'areaCode' - missing addition operator left of 'areaCode'
     }
     return phone;
   }
@@ -71,7 +74,8 @@ const person = {
   function logIfCanDrive(person) {
     if (person[age] === "true") {
       console.log("This person is of the legal age to drive.");
-    } else if {
+    } else {
+      // SyntaxError: Unexpected token '{'-- else if requires a conditional. dev probably meant else.
       console.log("This person cannot legally drive.")
     }
   }
@@ -82,5 +86,6 @@ const person = {
   }
   
   function ageUpPerson1Year(person) {
-    person[age]++ += person[age];
+    person[age]++;
+    // SyntaxError: Invalid left-hand side in assignment. function intends to add 1 year to person age.
   }
